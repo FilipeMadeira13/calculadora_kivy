@@ -13,6 +13,9 @@ class CalculatorLayout(BoxLayout):
         if self.calc_display.text == "ERROR":
             return
 
+        if self.expression and self.expression[-1] == "%":
+            return
+
         if (self.calc_display.text == "0") or self.new_input_mode:
             self.calc_display.text = value
             self.expression = value
