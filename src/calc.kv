@@ -29,6 +29,12 @@
 <PercentButton@Button>:
     on_press: app.root.process_percent()
 
+<ParenthesisButton@Button>:
+    on_press: app.root.process_parenthesis(self.text)
+
+<DotButton@Button>:
+    on_press: app.root.process_dot()
+
 CalculatorLayout:
     orientation: 'vertical'
     calc_display: calc_display
@@ -55,10 +61,10 @@ CalculatorLayout:
         cols: 4
         spacing: 10
         padding: 0, 10, 0, 0
-        Button:
+        ParenthesisButton:
             id: btn_open_parenthesis
             text: '('
-        Button:
+        ParenthesisButton:
             id: btn_close_parenthesis
             text: ')'
         PercentButton:
@@ -110,7 +116,7 @@ CalculatorLayout:
         NumberButton:
             id: btn_0
             text: '0'
-        Button:
+        DotButton:
             id: btn_dot
             text: '.'
         EqualButton:
