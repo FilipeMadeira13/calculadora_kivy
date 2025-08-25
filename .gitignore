@@ -174,3 +174,32 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+
+# Buildozer files
+.buildozer/
+bin/
+*.apk
+
+# Kivy temporary files
+.kivy/
+
+# Android development
+local.properties
+*.keystore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary test files
+.pytest_cache/
