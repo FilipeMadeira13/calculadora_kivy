@@ -1,220 +1,222 @@
-# 🧮 Calculadora Kivy
+# Calculator Project
 
-Uma calculadora moderna e funcional desenvolvida em Python usando o framework Kivy, com interface gráfica intuitiva e suporte a operações matemáticas avançadas.
+Uma calculadora desenvolvida com Python e Kivy, com interface responsiva e funcionalidades avançadas para Android.
 
-## ✨ Características
+## Características
 
-- **Interface moderna**: Design com botões arredondados e cores personalizadas
-- **Operações básicas**: Adição, subtração, multiplicação e divisão
-- **Suporte a decimais**: Operações com números decimais
-- **Parênteses**: Suporte completo a expressões com parênteses
-- **Porcentagem**: Cálculos com percentual integrados
-- **Tratamento de erros**: Exibição de "ERROR" para operações inválidas
-- **Testes automatizados**: Suite completa de testes com pytest
+- Interface gráfica responsiva adaptável a diferentes tamanhos de tela
+- Operações matemáticas básicas (+, -, *, /)
+- Suporte a números decimais
+- Cálculos com parênteses
+- Operações de porcentagem
+- Função limpar (Clear)
+- Compilação para Android via Buildozer
 
-## 🚀 Instalação
-
-### Pré-requisitos
-
-- Python 3.7 ou superior
-- pip (gerenciador de pacotes do Python)
-
-### Passos de instalação
-
-1. **Clone o repositório**
-```bash
-git clone https://github.com/FilipeMadeira13/calculadora_kivy.git
-cd calculadora-kivy
-```
-
-2. **Crie um ambiente virtual (recomendado)**
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# ou
-venv\Scripts\activate     # Windows
-```
-
-3. **Instale as dependências**
-```bash
-pip install -r requirements.txt
-```
-
-### Dependências
-
-As principais dependências incluem:
-- `kivy`: Framework para interface gráfica
-- `pytest`: Framework de testes
-
-## 🎯 Como usar
-
-### Executando a calculadora
-
-```bash
-python src/main.py
-```
-
-### Operações disponíveis
-
-| Botão | Função |
-|-------|--------|
-| `0-9` | Números |
-| `+` | Adição |
-| `-` | Subtração |
-| `*` | Multiplicação |
-| `/` | Divisão |
-| `.` | Ponto decimal |
-| `%` | Porcentagem |
-| `(` `)` | Parênteses |
-| `=` | Calcular resultado |
-| `C` | Limpar tudo |
-
-### Exemplos de uso
-
-- **Operação simples**: `2 + 3 =` → `5`
-- **Com decimais**: `3.5 + 2.5 =` → `6`
-- **Com parênteses**: `(2 + 3) * 4 =` → `20`
-- **Porcentagem**: `50% =` → `0.5`
-- **Porcentagem em operação**: `200 + 10% =` → `200.1`
-
-## 🏗️ Estrutura do projeto
+## Estrutura do Projeto
 
 ```
-calculadora-kivy/
-├── src/
-│   ├── main.py          # Arquivo principal da aplicação
-│   └── calc.kv          # Layout da interface (Kivy)
-├── tests/
-│   └── test_calculator.py  # Testes automatizados
+kivy-project/
+├── main.py          # Lógica principal da calculadora
+├── calc.kv              # Interface do usuário (Kivy)
+├── test_calculator.py   # Testes automatizados
+├── buildozer.spec       # Configuração para Android
 ├── requirements.txt     # Dependências do projeto
 └── README.md           # Este arquivo
 ```
 
-## 🧪 Executando os testes
+## Instalação e Configuração
 
-Para executar os testes automatizados:
-
-```bash
-pytest tests/
-```
-
-Para executar com mais detalhes:
+### Pré-requisitos
 
 ```bash
-pytest tests/ -v
+# Ubuntu/Debian
+sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses-dev cmake libffi-dev libssl-dev
+
+# Python 3.11+ recomendado
+python3 --version
 ```
 
-Para executar com cobertura:
+### Instalação das Dependências
 
 ```bash
-pytest tests/ --cov=src
+# Clone o repositório
+git clone https://github.com/FilipeMadeira13/calculadora_kivy.git
+cd kivy-project
+
+# Crie um ambiente virtual
+python3 -m venv venv
+source venv/bin/activate  # Linux/Mac
+# ou
+venv\Scripts\activate     # Windows
+
+# Instale as dependências
+pip install -r requirements.txt
 ```
 
-### Testes incluídos
+### Dependências Principais
 
-- ✅ Operações matemáticas básicas
-- ✅ Operações com números decimais
-- ✅ Expressões com parênteses
-- ✅ Cálculos com porcentagem
-- ✅ Função de limpeza (Clear)
-- ✅ Tratamento de erros
+- **Kivy**: Framework para interface gráfica multiplataforma
+- **Buildozer**: Ferramenta para compilação Android
+- **Cython**: Necessário para compilação
+- **pytest**: Framework de testes
 
-## 🎨 Personalização
+## Execução
 
-### Modificando cores e aparência
+### Desktop/Desenvolvimento
+```bash
+cd src
+python main.py
+```
 
-As cores e estilos podem ser modificados no arquivo `src/calc.kv`:
+### Compilação para Android
 
-- **Cor dos botões**: Modifique `background_color` em `<Button>`
-- **Cor do texto**: Altere `color` em `<Button>`
-- **Cor de fundo**: Ajuste `rgba` em `canvas.before`
-- **Raio dos botões**: Modifique `radius` em `RoundedRectangle`
+```bash
+# Primeira compilação (pode demorar)
+buildozer android debug
 
-### Adicionando novas funcionalidades
+# Compilações subsequentes
+buildozer android debug
 
-Para adicionar novos botões ou operações:
+# Instalar no dispositivo (ADB configurado)
+buildozer android debug deploy run
+```
 
-1. Adicione o botão no arquivo `calc.kv`
-2. Implemente a lógica no arquivo `main.py`
-3. Crie testes correspondentes em `test_calculator.py`
+## Funcionalidades da Calculadora
 
-## 🐛 Tratamento de erros
+### Operações Básicas
+- **Números**: Digite números de 0-9
+- **Operadores**: +, -, *, /
+- **Decimal**: Use o ponto (.) para números decimais
+- **Igual**: = para executar o cálculo
+- **Limpar**: C para resetar
 
-A calculadora trata os seguintes casos de erro:
+### Recursos Avançados
+- **Parênteses**: ( e ) para agrupamento de operações
+- **Porcentagem**: % converte números para porcentagem (50% = 0.5)
+- **Validação**: Previne operações inválidas
+- **Tratamento de Erros**: Exibe "ERROR" para expressões inválidas
 
-- Divisão por zero
-- Expressões matemáticas inválidas
-- Parênteses não balanceados
-- Operadores consecutivos inválidos
+### Exemplos de Uso
+```
+2 + 3 = 5
+(2 + 3) * 4 = 20
+50% = 0.5
+200 + 10% = 200.1
+```
 
-Quando um erro ocorre, a calculadora exibe "ERROR" e permite continuar a operação após limpar.
+## Testes
 
-## 🚀 Funcionalidades avançadas
+Execute os testes automatizados:
 
-### Modo de entrada inteligente
+```bash
+# Executar todos os testes
+pytest test_calculator.py
 
-- Automaticamente substitui a tela quando uma nova operação é iniciada
-- Previne entrada de múltiplos pontos decimais
-- Gerencia automaticamente parênteses balanceados
+# Executar com detalhes
+pytest -v test_calculator.py
 
-### Processamento de expressões
+# Executar teste específico
+pytest test_calculator.py::test_basics
+```
 
-- Suporte a operador `%` convertido para `/100`
-- Avaliação segura de expressões matemáticas
-- Formatação automática de resultados (remove `.0` de números inteiros)
+### Cobertura de Testes
+- Operações matemáticas básicas
+- Números decimais
+- Parênteses e precedência
+- Operações de porcentagem  
+- Função limpar
+- Tratamento de erros
 
-## 📝 Contribuindo
+## Interface Responsiva
 
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Crie um Pull Request
+A interface foi desenvolvida com `size_hint` e `pos_hint` para adaptação automática a diferentes tamanhos de tela:
 
-### Diretrizes de contribuição
+- **Display**: Ocupa 25% da altura da tela
+- **Botões**: Distribuídos uniformemente em grid 5x4
+- **Fontes**: Escaláveis baseadas no tamanho dos componentes
+- **Espaçamento**: Proporcional ao tamanho da tela
 
-- Mantenha o código limpo e bem documentado
-- Adicione testes para novas funcionalidades
-- Siga as convenções de nomenclatura Python (PEP 8)
-- Atualize a documentação conforme necessário
+## Configuração Android
 
-## 📋 TODO
+### buildozer.spec - Principais Configurações
 
-- [ ] Histórico de operações
-- [ ] Modo científico
-- [ ] Temas personalizáveis
-- [ ] Atalhos de teclado
-- [ ] Função de memória (M+, M-, MR, MC)
-- [ ] Exportar resultados
+```ini
+[app]
+title = Calculator Project
+package.name = calculatorproject
+package.domain = br.com.calculatorproject.filipemadeira
 
-## 🔧 Solução de problemas
+[android]
+permissions = android.permission.INTERNET
+api = 31
+minapi = 21
+ndk_api = 21
+archs = arm64-v8a, armeabi-v7a
+```
 
-### A calculadora não inicia
+### Instalação Manual no Android
 
-- Verifique se o Kivy está instalado corretamente
-- Confirme se você está usando Python 3.7+
-- Verifique se o arquivo `calc.kv` está no mesmo diretório
+Se o ADB não funcionar:
+1. Compile: `buildozer android debug`
+2. Copie o APK: `cp bin/*.apk /mnt/c/Users/$USER/Desktop/`
+3. Transfira para o dispositivo
+4. Instale permitindo "Fontes desconhecidas"
 
-### Testes falham
+## Solução de Problemas
 
-- Confirme se o pytest está instalado
-- Verifique se você está executando os testes do diretório raiz
-- Confirme se o módulo `src` está no PYTHONPATH
+### Python 3.12 - Erro distutils
+```bash
+pip install setuptools
+```
 
-### Interface não carrega corretamente
+### WSL2 - ADB não encontra dispositivo
+```bash
+# Configure ADB bridge
+export ADB_SERVER_SOCKET=tcp:localhost:5037
 
-- Verifique se o arquivo `calc.kv` não foi modificado incorretamente
-- Confirme se todas as dependências do Kivy estão instaladas
-- Teste em um ambiente virtual limpo
+# No Windows
+adb start-server
+adb devices
+```
 
-## 📄 Licença
+### Buildozer - main.py não encontrado
+Certifique-se de que existe um arquivo `main.py` na raiz do projeto.
 
-Este projeto está licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+## Desenvolvimento
 
-## 👥 Autor
+### Adicionando Novas Funcionalidades
 
-Desenvolvido com ❤️ para aprendizado e demonstração das capacidades do framework Kivy.
+1. **Lógica**: Implemente em `src/main.py`
+2. **Interface**: Atualize `calc.kv`
+3. **Testes**: Adicione casos em `test_calculator.py`
+4. **Documentação**: Atualize este README
 
----
+### Estrutura do Código
 
-**Nota**: Este projeto foi desenvolvido para fins educacionais e demonstra boas práticas de desenvolvimento Python com interfaces gráficas.
+- `CalculatorLayout`: Classe principal com lógica de negócio
+- `CalculatorApp`: Aplicação Kivy que carrega a interface
+- Widgets customizados: `NumberButton`, `OperatorButton`, etc.
+
+## Tecnologias Utilizadas
+
+- **Python 3.11+**: Linguagem principal
+- **Kivy 2.3.0**: Framework GUI multiplataforma
+- **Buildozer**: Compilação para Android
+- **pytest**: Testes automatizados
+- **Android NDK/SDK**: Compilação nativa Android
+
+## Licença
+
+Este projeto é de uso educacional e demonstrativo.
+
+## Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## Autor
+
+Desenvolvido como projeto de aprendizado em desenvolvimento mobile com Python/Kivy.

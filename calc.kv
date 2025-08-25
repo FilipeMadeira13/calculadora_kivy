@@ -1,0 +1,166 @@
+#:kivy 1.2.0
+
+<Button>:
+    background_normal: ''
+    background_down: ''
+    font_size: min(self.height * 0.4, self.width * 0.15)
+    color: 1, 1, 0, 1
+    background_color: 0, 0, 0, 0
+    canvas.before:
+        Color:
+            rgba: (0, 0, 1, 1) if self.state == 'down' else (0, 0, 0, 1)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [min(self.width, self.height) * 0.1]
+
+<NumberButton@Button>:
+    on_press: app.root.process_input(self.text)
+
+<OperatorButton@Button>:
+    on_press: app.root.process_operator(self.text)
+    canvas.before:
+        Color:
+            rgba: (0.2, 0.2, 1, 1) if self.state == 'down' else (0.1, 0.1, 0.5, 1)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [min(self.width, self.height) * 0.1]
+
+
+<ClearButton@Button>:
+    on_press: app.root.clear_display()
+
+<EqualButton@Button>:
+    on_press: app.root.calculate()
+    canvas.before:
+        Color:
+            rgba: (0.2, 1, 0.2, 1) if self.state == 'down' else (0.1, 0.8, 0.1, 1)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [min(self.width, self.height) * 0.1]
+
+<PercentButton@Button>:
+    on_press: app.root.process_percent()
+
+<ParenthesisButton@Button>:
+    on_press: app.root.process_parenthesis(self.text)
+
+<DotButton@Button>:
+    on_press: app.root.process_dot()
+
+CalculatorLayout:
+    orientation: 'vertical'
+    calc_display: calc_display
+    padding: min(self.width, self.height) * 0.02
+    spacing: min(self.width, self.height) * 0.01
+    canvas.before:
+        Color:
+            rgba: 1, 0, 0, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    TextInput:
+        id: calc_display
+        size_hint: 1, 0.25
+        height: max(dp(80), min(dp(150), self.parent.height * 0.25))
+        text: '0'
+        halign: 'right'
+        multiline: False
+        readonly: True
+        font_size: min(self.height * 0.6, self.width * 0.08)
+        padding: [self.width * 0.02, (self.height - self.line_height) / 2, self.width * 0.02, (self.height - self.line_height) / 2]
+    
+    GridLayout:
+        id: calc_buttons
+        rows: 5
+        cols: 4
+        size_hint: 1, 0.75
+        spacing: min(self.width, self.height) * 0.01
+        padding: [self.width * 0.01, self.height * 0.01, self.width * 0.01, self.height * 0.01]
+        ParenthesisButton:
+            id: btn_open_parenthesis
+            text: '('
+            size_hint: 0.25, 0.2
+        ParenthesisButton:
+            id: btn_close_parenthesis
+            text: ')'
+            size_hint: 0.25, 0.2
+        PercentButton:
+            id: btn_percentage
+            text: '%'
+            size_hint: 0.25, 0.2
+        ClearButton:
+            id: btn_clear
+            text: 'C'
+            size_hint: 0.25, 0.2
+            
+        NumberButton:
+            id: btn_7
+            text: '7'
+            size_hint: 0.25, 0.2
+        NumberButton:
+            id: btn_8
+            text: '8'
+            size_hint: 0.25, 0.2
+        NumberButton:
+            id: btn_9
+            text: '9'
+            size_hint: 0.25, 0.2
+        OperatorButton:
+            id: btn_divide
+            text: '/'
+            size_hint: 0.25, 0.2
+
+        NumberButton:
+            id: btn_4
+            text: '4'
+            size_hint: 0.25, 0.2
+        NumberButton:
+            id: btn_5
+            text: '5'
+            size_hint: 0.25, 0.2
+        NumberButton:
+            id: btn_6
+            text: '6'
+            size_hint: 0.25, 0.2
+        OperatorButton:
+            id: btn_multiply
+            text: '*'
+            size_hint: 0.25, 0.2
+            
+        NumberButton:
+            id: btn_1
+            text: '1'
+            size_hint: 0.25, 0.2
+        NumberButton:
+            id: btn_2
+            text: '2'
+            size_hint: 0.25, 0.2
+        NumberButton:
+            id: btn_3
+            text: '3'
+            size_hint: 0.25, 0.2
+        OperatorButton:
+            id: btn_minus
+            text: '-'
+            size_hint: 0.25, 0.2
+
+        NumberButton:
+            id: btn_0
+            text: '0'
+            size_hint: 0.25, 0.2
+        DotButton:
+            id: btn_dot
+            text: '.'
+            size_hint: 0.25, 0.2
+        EqualButton:
+            id: btn_equal
+            text: '='
+            size_hint: 0.25, 0.2
+        OperatorButton:
+            id: btn_add
+            text: '+'
+            size_hint: 0.25, 0.2
+
